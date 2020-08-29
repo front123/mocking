@@ -1,14 +1,14 @@
 package parking;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class InOrderParkingStrategyTest {
+
+    private InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
 
 	@Test
     public void testCreateReceipt_givenACarAndAParkingLog_thenGiveAReceiptWithCarNameAndParkingLotName() {
@@ -16,7 +16,6 @@ public class InOrderParkingStrategyTest {
 	    /* Exercise 1, Write a test case on InOrderParkingStrategy.createReceipt()
 	    * With using Mockito to mock the input parameter */
         //given
-        InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
         Car car = mock(Car.class);
         ParkingLot parkingLot = mock(ParkingLot.class);
         when(car.getName()).thenReturn("Make");
@@ -35,7 +34,15 @@ public class InOrderParkingStrategyTest {
 
         /* Exercise 1, Write a test case on InOrderParkingStrategy.createNoSpaceReceipt()
          * With using Mockito to mock the input parameter */
+        //given
+        Car car = mock(Car.class);
+        when(car.getName()).thenReturn("Make");
 
+        //when
+        Receipt receipt = inOrderParkingStrategy.createNoSpaceReceipt(car);
+
+        //then
+        assertEquals(receipt.getCarName(), "Make");
     }
 
     @Test
