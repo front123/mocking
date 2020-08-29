@@ -1,15 +1,27 @@
 package parking;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 import static parking.ParkingStrategy.NO_PARKING_LOT;
 
+@RunWith(MockitoJUnitRunner.class)
 public class VipParkingStrategyTest {
+
+    @Mock
+    private CarDao carDao;
+
+    @InjectMocks
+    private VipParkingStrategy vipParkingStrategyA;
 
 	@Test
     public void testPark_givenAVipCarAndAFullParkingLog_thenGiveAReceiptWithCarNameAndParkingLotName() {
@@ -18,7 +30,7 @@ public class VipParkingStrategyTest {
 	    * With using Mockito spy, verify and doReturn */
         //given
         VipParkingStrategy vipParkingStrategy = spy(new VipParkingStrategy());
-        Car car = new Car("VipCarA");
+        Car car = createMockCar("VipCarA");
         ParkingLot parkingLot = spy(new ParkingLot("ParkingLotA", 2));
         doReturn(true).when(parkingLot).isFull();
         doReturn(true).when(vipParkingStrategy).isAllowOverPark(any());
@@ -38,7 +50,7 @@ public class VipParkingStrategyTest {
          * With using Mockito spy, verify and doReturn */
         //given
         VipParkingStrategy vipParkingStrategy = spy(new VipParkingStrategy());
-        Car car = new Car("CarB");
+        Car car = createMockCar("CarB");
         ParkingLot parkingLot = spy(new ParkingLot("ParkingLotA", 2));
         doReturn(true).when(parkingLot).isFull();
         //when
@@ -57,6 +69,15 @@ public class VipParkingStrategyTest {
          * You may refactor the code, or try to use
          * use @RunWith(MockitoJUnitRunner.class), @Mock (use Mockito, not PowerMock) and @InjectMocks
          */
+        //given
+        Car car = createMockCar("vipCarA");
+        doReturn(true).when(carDao).isVip("vipCarA");
+
+        //when
+        boolean result = vipParkingStrategyA.isAllowOverPark(car);
+
+        //then
+        assertTrue(result);
     }
 
     @Test
