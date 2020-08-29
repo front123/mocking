@@ -1,27 +1,24 @@
 package sales;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import java.util.Date;
-
 public class Sales {
-	
-	private boolean isSupervisor;
 
-	private boolean isActive;
+    private boolean isSupervisor;
 
-	public boolean isActive() {
-		return isActive;
-	}
+    private boolean isActive;
 
-	public void setActive(boolean active) {
-		isActive = active;
-	}
+    public boolean isActive() {
+        return isActive;
+    }
 
-	public boolean isSupervisor() {
-		return isSupervisor;
-	}
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
-	public void setSupervisor(boolean isSupervisor) {
-		this.isSupervisor = isSupervisor;
-	}
+    public boolean isSupervisor() {
+        return isSupervisor;
+    }
+
+    public void setSupervisor(boolean isSupervisor) {
+        this.isSupervisor = isSupervisor;
+    }
 }

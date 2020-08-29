@@ -1,24 +1,24 @@
 package sales;
 
 public class SalesReportData {
-	
-	private boolean confidential;
-	private String type;
 
-	public String getType() {
-		return type;
-	}
+    private boolean confidential;
+    private String type;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public boolean isConfidential() {
-		return confidential;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setConfidential(boolean confidential) {
-		this.confidential = confidential;
-	}
+    public boolean isConfidential() {
+        return confidential;
+    }
+
+    public void setConfidential(boolean confidential) {
+        this.confidential = confidential;
+    }
 
 }

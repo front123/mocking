@@ -2,9 +2,9 @@ package sales;
 
 public class SalesActivityReport {
 
-	public String toXml() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String toXml() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
