@@ -29,8 +29,8 @@ public class InOrderParkingStrategyTest {
         Receipt receipt = inOrderParkingStrategy.createReceipt(parkingLot, car);
 
         //then
-        assertEquals(receipt.getCarName(), "Make");
-        assertEquals(receipt.getParkingLotName(), "ParkingLot1");
+        assertEquals("Make", receipt.getCarName());
+        assertEquals("ParkingLot1", receipt.getParkingLotName());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class InOrderParkingStrategyTest {
         Receipt receipt = inOrderParkingStrategy.createNoSpaceReceipt(car);
 
         //then
-        assertEquals(receipt.getCarName(), "Make");
+        assertEquals("Make", receipt.getCarName());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class InOrderParkingStrategyTest {
 
         //then
         verify(inOrderParkingStrategyMock, times(1)).createNoSpaceReceipt(any());
-        assertEquals(receipt.getParkingLotName(), NO_PARKING_LOT);
+        assertEquals(NO_PARKING_LOT, receipt.getParkingLotName());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class InOrderParkingStrategyTest {
         //then
         verify(inOrderParkingStrategyMock, times(1)).createReceipt(any(), any());
         verify(parkingLot, times(1)).isFull();
-        assertEquals(receipt.getParkingLotName(), "HAParkingLot");
+        assertEquals("HAParkingLot", receipt.getParkingLotName());
     }
 
     @Test
@@ -104,14 +104,25 @@ public class InOrderParkingStrategyTest {
         //then
         verify(inOrderParkingStrategyMock, times(1)).createNoSpaceReceipt(any());
         verify(parkingLot, times(1)).isFull();
-        assertEquals(receipt.getParkingLotName(), NO_PARKING_LOT);
+        assertEquals(NO_PARKING_LOT, receipt.getParkingLotName());
     }
 
     @Test
     public void testPark_givenThereIsMultipleParkingLotAndFirstOneIsFull_thenCreateReceiptWithUnfullParkingLot(){
 
         /* Exercise 3: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for multiple parking lot situation */
-
+        //given
+        InOrderParkingStrategy inOrderParkingStrategyMock = spy(new InOrderParkingStrategy());
+        ParkingLot parkingLot1 = mock(ParkingLot.class);
+        ParkingLot parkingLot2 = mock(ParkingLot.class);
+        when(parkingLot1.isFull()).thenReturn(true);
+        when(parkingLot1.isFull()).thenReturn(false);
+        when(parkingLot2.getName()).thenReturn("MParkingLot2");
+        //when
+        Receipt receipt = inOrderParkingStrategyMock.park(Arrays.asList(parkingLot2, parkingLot1), new Car("Make"));
+        //then
+        verify(inOrderParkingStrategyMock, times(1)).createReceipt(any(), any());
+        assertEquals("MParkingLot2", receipt.getParkingLotName());
     }
 
 
