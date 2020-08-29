@@ -1,12 +1,9 @@
 package parking;
 
-import mocking.MessageUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
@@ -17,10 +14,10 @@ import static org.powermock.api.mockito.PowerMockito.when;
 public class VipParkingStrategyPowerMockTest {
 
     @Test
-    public void testCalculateHourlyPrice_givenSunday_thenPriceIsDoubleOfSundayPrice(){
+    public void testCalculateHourlyPrice_givenSunday_thenPriceIsDoubleOfSundayPrice() {
 
         /* Exercise 6: Write test case for VipParkingStrategy calculateHourlyPrice
-        * by using PowerMock to mock static method */
+         * by using PowerMock to mock static method */
         //given
         VipParkingStrategy vipParkingStrategy = new VipParkingStrategy();
         mockStatic(ParkingLot.class);
@@ -34,7 +31,7 @@ public class VipParkingStrategyPowerMockTest {
     }
 
     @Test
-    public void testCalculateHourlyPrice_givenNotSunday_thenPriceIsDoubleOfNonSundayPrice(){
+    public void testCalculateHourlyPrice_givenNotSunday_thenPriceIsDoubleOfNonSundayPrice() {
 
         /* Exercise 6: Write test case for VipParkingStrategy calculateHourlyPrice
          * by using PowerMock to mock static method */
